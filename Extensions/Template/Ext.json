@@ -1,0 +1,196 @@
+{
+  "About": {
+    "Name": "Vox Object",
+    "Author": "Ricardo Reis",
+    "Copyright": "Copyright © 2017 Ricardo Reis",
+    "Comment": "Vox Object loads and displays .VOX voxel files",
+    "URL": "http://www.ricardoreis.net",
+    "Help": "",
+    "Identifier": "VOR1"
+  },
+  "ActionMenu": [
+    "Separator",
+    [
+      0,
+      "Set Local Angle X"
+    ],
+    [
+      1,
+      "Set Local Angle Y"
+    ],
+    [
+      2,
+      "Set Local Angle Z"
+    ],
+    [
+      3,
+      "Set Local Scale"
+    ],
+    "Separator",
+    [
+      4,
+      "Set Current Frame"
+    ],
+    "Separator",
+    [
+      5,
+      "Project Position"
+    ]
+  ],
+  "ConditionMenu": [
+    "Separator",
+    [
+      0,
+      "Is Projected Z behind this Object?"
+    ],
+    [
+      1,
+      "Is Projected Z in the front of this Object?"
+    ],
+    "Separator"
+  ],
+  "ExpressionMenu": [
+    "Separator",
+    [
+      0,
+      "Get Local Angle X"
+    ],
+    [
+      1,
+      "Get Local Angle Y"
+    ],
+    [
+      2,
+      "Get Local Angle Z"
+    ],
+    "Separator",
+    [
+      3,
+      "Get Current Frame"
+    ],
+    "Separator",
+    [
+      4,
+      "Get Depth Size"
+    ],
+    "Separator",
+    [
+      5,
+      "Get Projected X"
+    ],
+    [
+      6,
+      "Get Projected Y"
+    ]
+  ],
+  "Actions": [
+    {
+      "Title": "Set Local Angle X to %0 degrees",
+      "Parameters": [
+        [
+          "Float",
+          "Value"
+        ]
+      ]
+    },
+    {
+      "Title": "Set Local Angle Y to %0 degrees",
+      "Parameters": [
+        [
+          "Float",
+          "Value"
+        ]
+      ]
+    },
+    {
+      "Title": "Set Local Angle Z to %0 degrees",
+      "Parameters": [
+        [
+          "Float",
+          "Value"
+        ]
+      ]
+    },
+    {
+      "Title": "Set Local Scale to %0 percent",
+      "Parameters": [
+        [
+          "Float",
+          "Value"
+        ]
+      ]
+    },
+    {
+      "Title": "Set Current Frame to %0",
+      "Parameters": [
+        [
+          "Integer",
+          "Value"
+        ]
+      ]
+    },
+    {
+      "Title": "Project Position (%0, %1, %2) from 3D to 2D",
+      "Parameters": [
+        [
+          "Float",
+          "X"
+        ],
+        [
+          "Float",
+          "Y"
+        ],
+        [
+          "Float",
+          "Z"
+        ]
+      ]
+    }
+  ],
+  "Conditions": [
+    {
+      "Title": "Is Projected Z behind this Object?",
+      "Parameters": [
+
+      ],
+      "Triggered": false
+    },
+    {
+      "Title": "Is Projected Z in the front of this Object?",
+      "Parameters": [
+
+      ],
+      "Triggered": false
+    }
+  ],
+  "Expressions": [
+    {
+      "Title": "GetLocalAngleX(",
+      "Returns": "Float"
+    },
+    {
+      "Title": "GetLocalAngleY(",
+      "Returns": "Float"
+    },
+    {
+      "Title": "GetLocalAngleZ(",
+      "Returns": "Float"
+    },
+    {
+      "Title": "GetCurrentFrame(",
+      "Returns": "Integer"
+    },
+    {
+      "Title": "GetDepthSize(",
+      "Returns": "Integer"
+    },
+    {
+      "Title": "GetProjectedX(",
+      "Returns": "Integer"
+    },
+    {
+      "Title": "GetProjectedY(",
+      "Returns": "Integer"
+    }
+  ]
+}

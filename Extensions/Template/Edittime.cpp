@@ -1,0 +1,380 @@
+/* Edittime.cpp
+* This file contains functions for the
+* New Object dialog and the Frame Editor.
+* For properties, see Properties.cpp. For
+* custom parameters, see CustomParams.cpp.
+* For text properties, see TextProps.cpp.
+* Functions defined here:
+* MakeIconEx
+* UsesFile
+* CreateFromFile
+* CreateObject
+* EditObject
+* SetEditSize
+* PutObject
+* RemoveObject
+* CloneObject
+* GetObjectRect
+* EditorDisplay
+* IsTransparent
+* PrepareToWriteObject
+* GetFilters
+*/
+
+#include "Common.h"
+#include "EffectEx.h"
+
+/* CreateObject
+* This is the first time you have
+* access to the editdata, so it
+* needs to be initialized with
+* default values. Just be aware
+* that if the user chooses to
+* create your object from a file,
+* CreateFromFile will be called
+* instead of this function.
+*/
+
+int MMF2Func CreateObject(mv *mV, LO *lo, SerializedED *SED)
+{
+#ifndef RUN_ONLY
+	if (IS_COMPATIBLE(mV)) //Make sure Fusion hasn't changed in a way that makes your extension incompatible
+	{
+		Edif::Init(mV, SED);
+
+		EditData().Serialize(mV, SED); //create & store the default editdata
+
+		return 0;
+	}
+#endif
+	return -1;
+}
+
+/* MakeIconEx
+* Lets you draw the icon dynamically
+* by drawing into the Icon surface. The
+* current example just uses the
+* Icon.png from the resources.
+*/
+int MMF2Func MakeIconEx(mv *mV, cSurface *Icon, LPTSTR Name, OI *oi, SerializedED *SED)
+{
+#ifndef RUN_ONLY
+	//EditData ed(SED);
+	//if (ed.vox != nullptr && ed.vox->voxAnimation != nullptr && ed.vox->voxAnimation->loaded) {
+	//	ed.vox->DrawToSurface(Icon, 0, 0, 32, 32, false, BMODE_TRANSP, BOP_COPY, 0, true);
+	//} else {
+	Icon->Delete();
+	Icon->Clone(*SDK->Icon);
+	Icon->SetTransparentColor(RGB(255, 0, 255));
+	//}
+	return 0;
+#endif
+	return -1;
+}
+
+/* UsesFile
+* When the user chooses "Create From
+* File", Fusion asks each extension if
+* it supports being created from that
+* file. Here you should investigate
+* the file and see if your extension
+* can be created from it in the
+* CreateFromFile function below. You
+* can simply check the file extension,
+* for example.
+*/
+BOOL MMF2Func UsesFile(mv *mV, LPTSTR FileName)
+{
+#ifndef RUN_ONLY
+	if (IS_COMPATIBLE(mV)) //check for compatibility, since you can't return an error from CreateFromFile
+	{
+		//		char ext[_MAX_EXT];
+		//		_tsplitpath(FileName, 0, 0, 0, ext);
+		//		if(stdtstring(".iherebydeclarethatthisfilecontainsmyintmystringandmyarray") == ext)
+		//		{
+		//			return TRUE;
+		//		}
+	}
+#endif
+	return FALSE;
+}
+
+/* CreateFromFile
+* If the user decides to create your object
+* from the file you said you were OK with
+* above, this is where you take that file
+* and actually create your object from it.
+* The CreateObject function up above will
+* not have executed, so you need to initialize
+* the editdata just as you would in CreateObject.
+*/
+void MMF2Func CreateFromFile(mv *mV, LPTSTR FileName, SerializedED *SED)
+{
+#ifndef RUN_ONLY
+	Edif::Init(mV, SED);
+
+	EditData ed; //default EditData
+				 //	std::ifstream in (FileName);
+				 //	EditData::MyArray_t::size_type MyArray_size;
+				 //	in >> ed.MyString >> ed.MyInt >> MyArray_size;
+				 //	ed.MyArray.clear();
+				 //	for(EditData::MyArray_t::size_type i = 0; i < MyArray_size; ++i)
+				 //	{
+				 //		ed.MyArray.push_back(0);
+				 //		in >> ed.MyArray.back();
+				 //	}
+	ed.Serialize(mV, SED);
+#endif
+}
+
+/* PutObject
+* Each time a duplicate is made of your
+* object, Fusion calls this function to
+* let you know. You still share the same
+* editdata, the difference is the
+* LevelObject pointer and the number of
+* duplicates.
+*/
+void MMF2Func PutObject(mv *mV, LO *lo, SerializedED *SED, ushort NDup)
+{
+#ifndef RUN_ONLY
+	if (NDup == 1) //is this the first object being created?
+	{
+		//You can put common code to both
+		//CreateObject and CreateFromFile
+		//as this function will execute
+		//after either one.
+	}
+#endif
+}
+
+/* RemoveObject
+* Just the opposite of the above, when
+* the user removes an instance of your
+* object. This also functions as a
+* DestroyObject function of sorts when
+* NDup == 1.
+*/
+void MMF2Func RemoveObject(mv *mV, LO *lo, SerializedED *SED, ushort NDup)
+{
+#ifndef RUN_ONLY
+	if (NDup == 1) //is this the last object being removed?
+	{
+		Edif::Free(SED);
+		//
+	}
+#endif
+}
+
+/* CloneObject
+* When the user makes a clone of your object
+* (not just another instance), Fusion copies the
+* contents of the editdata and then lets you
+* know that the editdata in question is in
+* new hands. Here you can 'fix' anything that
+* might be caused by directly copying the
+* editdata, though you should never have
+* any problems like that in the first place.
+*/
+void MMF2Func CloneObject(mv *mV, OI *oi, SerializedED *SED)
+{
+#ifndef RUN_ONLY
+	//
+#endif
+}
+
+/* EditObject
+* If the user double-clicks your object icon
+* or chooses the Edit option from a context
+* menu, this function is called. This is useful
+* as a que to bring up an animation editor for
+* animations in your object. Return TRUE if
+* changes were made to the editdata, and FALSE
+* otherwise.
+*/
+BOOL MMF2Func EditObject(mv *mV, OI *oi, LO *lo, SerializedED *SED)
+{
+#ifndef RUN_ONLY
+	//
+#endif
+	return FALSE;
+}
+
+/* SetEditSize
+* If your object is resizeable, Fusion calls this
+* to let you know that the user has just requested
+* a resize of the object. You can take the new
+* size as is, or if it reminds you too much of
+* 500 page essays you can limit the size to whatever
+* you want. If you uncomment this function, make
+* sure you also uncomment it in Ext.def. The
+* presence of this function tells Fusion that your
+* object can be resized; otherwise it can't.
+*/
+BOOL MMF2Func SetEditSize(mv *mV, SerializedED *SED, int x, int y)
+{
+#ifndef RUN_ONLY
+	EditData ed(SED, mV);
+	ed.vox->width = x;
+	ed.vox->height = y;
+	ed.Serialize(mV, SED);
+	return TRUE;
+#endif
+	return FALSE;
+}
+
+/* GetObjectRect
+* Fusion wants to know from time to time how much
+* space your object is taking up on the frame
+* editor. Currently this just gives the size of
+* your Icon.png, but you can change it to parallel
+* with the SetEditSize function above.
+*/
+void MMF2Func GetObjectRect(mv *mV, RECT *rect, LO *lo, SerializedED *SED)
+{
+#ifndef RUN_ONLY
+	EditData ed(SED, mV, true);
+	rect->right = rect->left + ed.vox->width;
+	rect->bottom = rect->top + ed.vox->height;
+#endif
+}
+
+
+/* EditorDisplay
+* This function does the work of drawing your
+* object on the frame editor. In this example,
+* the Icon.png file is simply drawn to the
+* frame, but you can change this to draw
+* anything you want.
+*/
+void MMF2Func EditorDisplay(mv *mV, OI *oi, LO *lo, SerializedED *SED, RECT *rect)
+{
+#ifndef RUN_ONLY
+	EditData ed(SED, mV);
+
+	ed.vox->SetAnimation(0);
+
+	cSurface *destination = WinGetSurface(int(mV->mvIdEditWin));
+
+	LPSURFACE proto = NULL;
+	if (destination != NULL) {
+		GetSurfacePrototype(&proto, destination->GetDepth(), ST_MEMORYWITHDC, SD_DIB);
+	}
+
+	int x = rect->left;
+	int y = rect->top;
+	int width = rect->right - rect->left;
+	int height = rect->bottom - rect->top;
+
+	ed.vox->surface = NewSurface();
+	ed.vox->surface->Create(width, height, proto);
+	ed.vox->surface->CreateAlpha();
+
+	BlitMode bm = (oi->oiHdr.oiInkEffect & EFFECTFLAG_TRANSPARENT) ? BMODE_TRANSP : BMODE_OPAQUE;
+	BOOL bAntiA = (oi->oiHdr.oiInkEffect & EFFECTFLAG_ANTIALIAS) ? TRUE : FALSE;
+	BlitOp bo = (BlitOp)(oi->oiHdr.oiInkEffect & EFFECT_MASK);
+	DWORD effectParam = oi->oiHdr.oiInkEffectParam;
+
+	if (oi->oiHdr.oiInkEffect & BOP_EFFECTEX && ed.vox->depthAsAlpha && ed.vox->voxAnimation != nullptr)
+	{
+		CEffectEx* pEffectEx = (CEffectEx*)effectParam;
+		if (pEffectEx != nullptr) {
+			int positionXParamIndex = pEffectEx->GetParamIndex(ed.vox->positionParameterX.c_str());
+			int positionYParamIndex = pEffectEx->GetParamIndex(ed.vox->positionParameterY.c_str());
+			int depthSizeParamIndex = pEffectEx->GetParamIndex(ed.vox->depthSizeParameter.c_str());
+			if (positionXParamIndex >= 0) pEffectEx->SetParamFloatValue(positionXParamIndex, x);
+			if (positionYParamIndex >= 0) pEffectEx->SetParamFloatValue(positionYParamIndex, y);
+			if (depthSizeParamIndex >= 0) pEffectEx->SetParamFloatValue(depthSizeParamIndex, ed.vox->voxAnimation->depthSize);
+		}
+	}
+	ed.vox->DrawToSurface(destination, x, y, width, height, bAntiA, bm, bo, (int)effectParam);
+#endif
+}
+
+
+/* IsTransparent
+* Fusion calls this to ask if the mouse pointer
+* is over a transparent part of your object.
+* Don't ask why this isn't called "IsOpaque",
+* just accept that it isn't and move on. If the
+* given coordinates are over an opaque part of
+* your object, return TRUE, otherwise return
+* FALSE. (Protip: Fusion calls this function a
+* LOT. Don't put a MessageBox function in here
+* or any other kind of debug function.)
+*/
+extern "C" BOOL MMF2Func IsTransparent(mv *mV, LO *lo, SerializedED *SED, int x, int y)
+{
+#ifndef RUN_ONLY
+	//
+#endif
+	return FALSE;
+}
+
+/* PrepareToWriteObject (DEPRECATED)
+* Just before Fusion writes the editdata to the MFA,
+* it calls this function to let you clean up
+* a temporary copy of the editdata. Because you
+* intelligently designed your EditData::Serialize
+* function to always save cleaned data anyway,
+* this function is useless.
+*/
+void MMF2Func PrepareToWriteObject(mv *, SerializedED *, OI *) {}
+
+/* GetFilters
+* When the MFA filters are set to Automatic, Fusion
+* asks your extension if it uses filters or not.
+* If you use any of either kind of filters, return
+* TRUE for that kind.
+*/
+BOOL MMF2Func GetFilters(mv *mV, SerializedED *SED, DWORD Flags, void *)
+{
+#ifndef RUN_ONLY
+	//If your extension uses image filters
+	//	if((dwFlags & GETFILTERS_IMAGES) != 0) return TRUE;
+
+	//If your extension uses sound filters
+	//	if((dwFlags & GETFILTERS_SOUNDS) != 0) return TRUE;
+#endif
+	return FALSE;
+}
+
+#ifndef RUN_ONLY
+
+/* InterceptActionSelection
+* This function is called after the user has selected a
+* menu item from the actions popup menu. You can show
+* a dialog or allow the user to make a choice, and
+* return a different ID to Fusion. Be aware, there
+* is no way to cancel this operation.
+*/
+short InterceptActionSelection(mv *mV, short selectedId)
+{
+	return selectedId;
+}
+
+/* InterceptActionSelection
+* This function is called after the user has selected a
+* menu item from the conditions popup menu. You can show
+* a dialog or allow the user to make a choice, and
+* return a different ID to Fusion. Be aware, there
+* is no way to cancel this operation.
+*/
+short InterceptConditionSelection(mv *mV, short selectedId)
+{
+	return selectedId;
+}
+
+/* InterceptActionSelection
+* This function is called after the user has selected a
+* menu item from the expressions popup menu. You can show
+* a dialog or allow the user to make a choice, and
+* return a different ID to Fusion. Be aware, there
+* is no way to cancel this operation.
+*/
+short InterceptExpressionSelection(mv *mV, short selectedId)
+{
+	return selectedId;
+}
+
+#endif
