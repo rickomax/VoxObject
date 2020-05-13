@@ -112,8 +112,6 @@ void VoxAnimation::LoadFromFile(mv* mV) {
 		loaded = true;
 		return;
 	}
-	char cFilename[1024];
-	//wcstombs(cFilename, filename, MaxFilenameLength);
 	FILE *file = fopen(filename.c_str(), "rb");
 	if (!file) {
 		loaded = false;
@@ -141,9 +139,7 @@ void VoxAnimation::LoadFromFile(mv* mV) {
 
 void VoxAnimation::Destroy() {
 	if (voxModels != nullptr) {
-		//for (int i = 0; i < numModels; i++) {
 		delete[] voxModels;
-		//}
 		voxModels = nullptr;
 	}
 }
