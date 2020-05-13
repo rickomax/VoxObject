@@ -8,11 +8,6 @@
 #include <map>
 #include <math.h>
 
-//VoxModel* Vox::GetModel(stdtstring filename) {
-//	return nullptr;
-//	//std::map<stdtstring, std::vector<VoxModel*>> models = Edif::Runtime::ReadGlobal()
-//}
-
 float Vox::LerpAngle(float angle1, float angle2, float alpha) {
 	angle1 = Deg2Rad(angle1);
 	angle2 = Deg2Rad(angle2);
@@ -172,14 +167,10 @@ void Vox::SetAnimation(unsigned int animation) {
 
 void Vox::Destroy() {
 	if (voxAnimations != nullptr) {
-		//for (int i = 0; i < MaxAnimations; i++) {
-		//	delete &voxAnimations[i];
-		//}
 		delete[] voxAnimations;
 		voxAnimations = nullptr;
 	}
 	if (voxAnimation != nullptr) {
-		//delete voxAnimation;
 		voxAnimation = nullptr;
 	}
 	mV = nullptr;
