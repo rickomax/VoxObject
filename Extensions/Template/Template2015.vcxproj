@@ -203,7 +203,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\Inc;..\..\Deps</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;EDITOR;HWABETA;COXSDK;IN_EXT_VERSION2;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UndefinePreprocessorDefinitions>min;max;%(UndefinePreprocessorDefinitions)</UndefinePreprocessorDefinitions>
       <StringPooling>true</StringPooling>
@@ -214,6 +213,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <EnablePREfast>false</EnablePREfast>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>.\;..\..\Inc;..\..\Deps;%{AdditionalIncludeDirectories}</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -247,7 +247,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\Inc;..\..\Deps</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;EDITOR;HWABETA;COXSDK;IN_EXT_VERSION2;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UndefinePreprocessorDefinitions>min;max;%(UndefinePreprocessorDefinitions)</UndefinePreprocessorDefinitions>
       <StringPooling>true</StringPooling>
@@ -258,6 +257,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <EnablePREfast>false</EnablePREfast>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>.\;..\..\Inc;..\..\Deps;%{AdditionalIncludeDirectories}</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -291,7 +291,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\Inc;..\..\Deps</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;EDITOR;COXSDK;IN_EXT_VERSION2;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UndefinePreprocessorDefinitions>min;max;%(UndefinePreprocessorDefinitions)</UndefinePreprocessorDefinitions>
       <StringPooling>true</StringPooling>
@@ -302,6 +301,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <EnablePREfast>false</EnablePREfast>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>.\;..\..\Inc;..\..\Deps;%{AdditionalIncludeDirectories}</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -337,7 +337,6 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\Inc;..\..\Deps</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>EDITOR;HWABETA;COXSDK;IN_EXT_VERSION2;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UndefinePreprocessorDefinitions>min;max;%(UndefinePreprocessorDefinitions)</UndefinePreprocessorDefinitions>
       <StringPooling>true</StringPooling>
@@ -348,6 +347,7 @@
       <DebugInformationFormat>None</DebugInformationFormat>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/Zc:threadSafeInit-</AdditionalOptions>
+      <AdditionalIncludeDirectories>.\;..\..\Inc;..\..\Deps;%{AdditionalIncludeDirectories}</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>No</GenerateDebugInformation>
@@ -385,7 +385,6 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\Inc;..\..\Deps</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>EDITOR;HWABETA;COXSDK;IN_EXT_VERSION2;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UndefinePreprocessorDefinitions>min;max;%(UndefinePreprocessorDefinitions)</UndefinePreprocessorDefinitions>
       <StringPooling>true</StringPooling>
@@ -396,6 +395,7 @@
       <DebugInformationFormat>None</DebugInformationFormat>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/Zc:threadSafeInit-</AdditionalOptions>
+      <AdditionalIncludeDirectories>.\;..\..\Inc;..\..\Deps;%{AdditionalIncludeDirectories}</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>No</GenerateDebugInformation>
@@ -433,7 +433,6 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\Inc;..\..\Deps</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>EDITOR;HWABETA;COXSDK;IN_EXT_VERSION2;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UndefinePreprocessorDefinitions>min;max;%(UndefinePreprocessorDefinitions)</UndefinePreprocessorDefinitions>
       <StringPooling>true</StringPooling>
@@ -444,6 +443,7 @@
       <DebugInformationFormat>None</DebugInformationFormat>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/Zc:threadSafeInit-</AdditionalOptions>
+      <AdditionalIncludeDirectories>.\;..\..\Inc;..\..\Deps;%{AdditionalIncludeDirectories}</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>No</GenerateDebugInformation>
@@ -481,7 +481,6 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\Inc;..\..\Deps</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_NDEBUG;RUN_ONLY;HWABETA;COXSDK;IN_EXT_VERSION2;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UndefinePreprocessorDefinitions>min;max;%(UndefinePreprocessorDefinitions)</UndefinePreprocessorDefinitions>
       <StringPooling>true</StringPooling>
@@ -492,6 +491,7 @@
       <DebugInformationFormat>None</DebugInformationFormat>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/Zc:threadSafeInit-</AdditionalOptions>
+      <AdditionalIncludeDirectories>.\;..\..\Inc;..\..\Deps;%{AdditionalIncludeDirectories}</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>No</GenerateDebugInformation>
@@ -526,7 +526,6 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\Inc;..\..\Deps</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_NDEBUG;RUN_ONLY;HWABETA;COXSDK;IN_EXT_VERSION2;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UndefinePreprocessorDefinitions>min;max;%(UndefinePreprocessorDefinitions)</UndefinePreprocessorDefinitions>
       <StringPooling>true</StringPooling>
@@ -537,6 +536,7 @@
       <DebugInformationFormat>None</DebugInformationFormat>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/Zc:threadSafeInit-</AdditionalOptions>
+      <AdditionalIncludeDirectories>.\;..\..\Inc;..\..\Deps;%{AdditionalIncludeDirectories}</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>No</GenerateDebugInformation>
@@ -571,7 +571,6 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\Inc;..\..\Deps</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_NDEBUG;RUN_ONLY;COXSDK;IN_EXT_VERSION2;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UndefinePreprocessorDefinitions>min;max;%(UndefinePreprocessorDefinitions)</UndefinePreprocessorDefinitions>
       <StringPooling>true</StringPooling>
@@ -582,6 +581,7 @@
       <DebugInformationFormat>None</DebugInformationFormat>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/Zc:threadSafeInit-</AdditionalOptions>
+      <AdditionalIncludeDirectories>.\;..\..\Inc;..\..\Deps;%{AdditionalIncludeDirectories}</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>No</GenerateDebugInformation>
