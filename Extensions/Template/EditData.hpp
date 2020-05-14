@@ -133,7 +133,7 @@ struct EditData final
 					animation->filename = is.read_string();
 					animation->maxSpeed = is.read_value<int>();
 					animation->minSpeed = is.read_value<int>();
-					if (animation->filename != "") {
+					if (!animation->filename.empty()) {
 						validAnimation = i;
 					}
 				}

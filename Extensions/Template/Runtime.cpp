@@ -110,7 +110,7 @@ LPSMASK MMF2Func GetRunObjectCollisionMask(RD *rd, LPARAM lParam)
  */
 void MMF2Func StartApp(mv *mV, CRunApp *App)
 {
-	Edif::Runtime::WriteGlobal(mV, App, "GLOBAL", new std::string("AE"), mV->mvHInst);
+
 }
 
 /* EndApp

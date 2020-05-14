@@ -103,7 +103,7 @@ bool VoxAnimation::ReadMain(FILE* file) {
 }
 
 void VoxAnimation::LoadFromFile(mv* mV) {
-	if (filename == "") {
+	if (filename.empty()) {
 		Reset();
 		loaded = false;
 		return;
@@ -112,7 +112,11 @@ void VoxAnimation::LoadFromFile(mv* mV) {
 		loaded = true;
 		return;
 	}
+#ifdef _UNICODE
+	FILE *file = _wfopen(filename.c_str(), L"rb");
+#else
 	FILE *file = fopen(filename.c_str(), "rb");
+#endif
 	if (!file) {
 		loaded = false;
 		return;

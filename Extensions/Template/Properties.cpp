@@ -337,24 +337,46 @@ void MMF2Func SetPropCheck(mv *mV, SerializedED *SED, UINT PropID, BOOL Ticked)
 #endif
 }
 
+#ifdef _UNICODE
 const static stdtstring AnimationNames[] = {
-	u8"Stop",
-	u8"Walk",
-	u8"Run",
-	u8"Appear",
-	u8"Disappear",
-	u8"Bounce",
-	u8"Shoot",
-	u8"Jump",
-	u8"Fall",
-	u8"Climb",
-	u8"Crouch",
-	u8"Uncrouch",
-	u8"Custom 1",
-	u8"Custom 2",
-	u8"Custom 3",
-	u8"Custom 4"
+	L"Stop",
+	L"Walk",
+	L"Run",
+	L"Appear",
+	L"Disappear",
+	L"Bounce",
+	L"Shoot",
+	L"Jump",
+	L"Fall",
+	L"Climb",
+	L"Crouch",
+	L"Uncrouch",
+	L"Custom 1",
+	L"Custom 2",
+	L"Custom 3",
+	L"Custom 4"
 };
+#else
+const static stdtstring AnimationNames[] = {
+	"Stop",
+	"Walk",
+	"Run",
+	"Appear",
+	"Disappear",
+	"Bounce",
+	"Shoot",
+	"Jump",
+	"Fall",
+	"Climb",
+	"Crouch",
+	"Uncrouch",
+	"Custom 1",
+	"Custom 2",
+	"Custom 3",
+	"Custom 4"
+};
+
+#endif
 
 Vox* vox = nullptr;
 int selectedIndex = -1;
