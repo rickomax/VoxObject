@@ -19,6 +19,7 @@
 
 #include "Common.h"
 #include "EffectEx.h"
+#include <comdef.h>  
 
  /* <constructor>
   * This is your extension's constructor, which
@@ -42,6 +43,7 @@ Extension::Extension(RD *rd, SerializedED *SED, createObjectInfo *COB)
 	LinkAction(3, SetLocalScale);
 	LinkAction(4, SetCurrentFrame);
 	LinkAction(5, ProjectPosition);
+	LinkAction(6, LoadLight);
 	
 	LinkCondition(0, IsProjectedZBehind);
 	LinkCondition(1, IsProjectedZInTheFront)
@@ -67,6 +69,15 @@ Extension::Extension(RD *rd, SerializedED *SED, createObjectInfo *COB)
 	vox->surface->Create(vox->width, vox->height, proto);
 	vox->surface->CreateAlpha();
 
+	VoxLight::surface = NewSurface();
+	VoxLight::surface->Create(8, 8, proto);
+
+	LPSURFACE hwaProto = NULL;
+	GetSurfacePrototype(&hwaProto, windowSurface->GetDepth(), ST_HWA_ROMTEXTURE, SD_D3D9);
+	VoxLight::hwaSurface = NewSurface();
+	VoxLight::hwaSurface->Create(8, 8, hwaProto);
+	//VoxLight::surface->CreateAlpha();
+	
 	rd->rHo.hoImgWidth = vox->width;
 	rd->rHo.hoImgHeight = vox->height;
 }
@@ -140,6 +151,30 @@ short Extension::Display()
 	BOOL bAntiA = (rd->rs->rsEffect & EFFECTFLAG_ANTIALIAS) ? TRUE : FALSE;
 	BlitOp bo = (BlitOp)(rd->rs->rsEffect & EFFECT_MASK);
 	DWORD effectParam = rd->rs->rsEffectParam;
+
+	if (rd->rs->rsEffect & BOP_EFFECTEX && vox->depthAsAlpha)
+	{
+		CEffectEx* pEffectEx = (CEffectEx*)effectParam;
+		if (pEffectEx != nullptr) {
+#ifdef _UNICODE
+			_bstr_t a(vox->positionParameterX.c_str());
+			_bstr_t b(vox->positionParameterY.c_str());
+			_bstr_t c(vox->depthSizeParameter.c_str());
+			int positionXParamIndex = pEffectEx->GetParamIndex(a);
+			int positionYParamIndex = pEffectEx->GetParamIndex(b);
+			int depthSizeParamIndex = pEffectEx->GetParamIndex(c);
+#else
+			int positionXParamIndex = pEffectEx->GetParamIndex(vox->positionParameterX.c_str());
+			int positionYParamIndex = pEffectEx->GetParamIndex(vox->positionParameterY.c_str());
+			int depthSizeParamIndex = pEffectEx->GetParamIndex(vox->depthSizeParameter.c_str());
+#endif
+			if (positionXParamIndex >= 0) pEffectEx->SetParamFloatValue(positionXParamIndex, x);
+			if (positionYParamIndex >= 0) pEffectEx->SetParamFloatValue(positionYParamIndex, y);
+			if (depthSizeParamIndex >= 0) pEffectEx->SetParamFloatValue(depthSizeParamIndex, vox->voxAnimation->depthSize);
+			int lightSurfaceParamIndex = pEffectEx->GetParamIndex("lightSurface");
+			if (lightSurfaceParamIndex >= 0) pEffectEx->SetParamSurfaceValue(lightSurfaceParamIndex, GetSurfaceImplementation(*VoxLight::hwaSurface));
+		}
+	}
 
 	vox->DrawToSurface(windowSurface, x, y, width, height, bAntiA, bm, bo, (int)effectParam, false);
 	WinAddZone(rhPtr->rhIdEditWin, rect);

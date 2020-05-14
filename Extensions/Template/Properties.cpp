@@ -443,8 +443,12 @@ BOOL CALLBACK SetupProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam
 					return FALSE;
 				}
 				VoxAnimation * selectedAnimation = &vox->voxAnimations[selectedIndex];
-				selectedAnimation->filename = "";
+				selectedAnimation->filename.clear();
+#ifdef _UNICODE
+				SetDlgItemText(hwndDlg, IDC_FILENAME, L"");
+#else
 				SetDlgItemText(hwndDlg, IDC_FILENAME, "");
+#endif
 				break;
 			}
 			}
@@ -458,15 +462,28 @@ BOOL CALLBACK SetupProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam
 					return FALSE;
 				}
 				OPENFILENAME ofn;
+#ifdef _UNICODE
+				wchar_t szFileName[MAX_PATH] = L"";
+#else
 				char szFileName[MAX_PATH] = "";
+#endif
 				ZeroMemory(&ofn, sizeof(ofn));
 				ofn.lStructSize = sizeof(ofn);
 				ofn.hwndOwner = hwndDlg;
+#ifdef _UNICODE
+				ofn.lpstrFilter = L"Vox Files (*.vox)\0*.vox";
+				ofn.lpstrFile = szFileName;
+#else
 				ofn.lpstrFilter = "Vox Files (*.vox)\0*.vox";
 				ofn.lpstrFile = szFileName;
+#endif
 				ofn.nMaxFile = MAX_PATH;
 				ofn.Flags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_HIDEREADONLY | OFN_ALLOWMULTISELECT;
+#ifdef _UNICODE
+				ofn.lpstrDefExt = L"vox";
+#else
 				ofn.lpstrDefExt = "vox";
+#endif
 				if (GetOpenFileName(&ofn))
 				{
 					VoxAnimation * selectedAnimation = &vox->voxAnimations[selectedIndex];

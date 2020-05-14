@@ -171,6 +171,7 @@
     <ClInclude Include="Vox.h" />
     <ClInclude Include="VoxModel.h" />
     <ClInclude Include="VoxAnimation.h" />
+    <ClInclude Include="VoxLight.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Lib\json.c">
@@ -230,6 +231,7 @@
     <ClCompile Include="Vox.cpp" />
     <ClCompile Include="VoxModel.cpp" />
     <ClCompile Include="VoxAnimation.cpp" />
+    <ClCompile Include="VoxLight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\Lib\mmfs2.5.lib">

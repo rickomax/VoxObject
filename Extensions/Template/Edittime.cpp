@@ -23,6 +23,7 @@
 
 #include "Common.h"
 #include "EffectEx.h"
+#include <comdef.h>  
 
 /* CreateObject
 * This is the first time you have
@@ -279,9 +280,18 @@ void MMF2Func EditorDisplay(mv *mV, OI *oi, LO *lo, SerializedED *SED, RECT *rec
 	{
 		CEffectEx* pEffectEx = (CEffectEx*)effectParam;
 		if (pEffectEx != nullptr) {
+#ifdef _UNICODE
+			_bstr_t a(ed.vox->positionParameterX.c_str());
+			_bstr_t b(ed.vox->positionParameterY.c_str());
+			_bstr_t c(ed.vox->depthSizeParameter.c_str());
+			int positionXParamIndex = pEffectEx->GetParamIndex(a);
+			int positionYParamIndex = pEffectEx->GetParamIndex(b);
+			int depthSizeParamIndex = pEffectEx->GetParamIndex(c);
+#else
 			int positionXParamIndex = pEffectEx->GetParamIndex(ed.vox->positionParameterX.c_str());
 			int positionYParamIndex = pEffectEx->GetParamIndex(ed.vox->positionParameterY.c_str());
 			int depthSizeParamIndex = pEffectEx->GetParamIndex(ed.vox->depthSizeParameter.c_str());
+#endif
 			if (positionXParamIndex >= 0) pEffectEx->SetParamFloatValue(positionXParamIndex, x);
 			if (positionYParamIndex >= 0) pEffectEx->SetParamFloatValue(positionYParamIndex, y);
 			if (depthSizeParamIndex >= 0) pEffectEx->SetParamFloatValue(depthSizeParamIndex, ed.vox->voxAnimation->depthSize);

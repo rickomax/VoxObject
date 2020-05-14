@@ -35,6 +35,11 @@
     [
       5,
       "Project Position"
+    ],
+    "Separator",
+    [
+      6,
+      "LoadLight"
     ]
   ],
   "ConditionMenu": [
@@ -143,6 +148,47 @@
         [
           "Float",
           "Z"
+        ]
+      ]
+    },
+    {
+      "Title": "Load light %0 at (%1, %2, %3) with intensity %4 with color (%5, %6, %7) and attenuation %8",
+      "Parameters": [
+        [
+          "Integer",
+          "LightIndex"
+        ],
+        [
+          "Integer",
+          "X"
+        ],
+        [
+          "Integer",
+          "Y"
+        ],
+        [
+          "Integer",
+          "Z"
+        ],
+        [
+          "Integer",
+          "Intensity"
+        ],
+        [
+          "Integer",
+          "R"
+        ],
+        [
+          "Integer",
+          "G"
+        ],
+        [
+          "Integer",
+          "B"
+        ],
+        [
+          "Integer",
+          "Attenuation"
         ]
       ]
     }

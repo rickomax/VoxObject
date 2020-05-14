@@ -22,6 +22,7 @@
 
 #include <cstdint>
 #include "VoxModel.h"
+#include "VoxLight.h"
 #include "VoxAnimation.h"
 #include "Vox.h"
 

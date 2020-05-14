@@ -15,6 +15,7 @@
  */
 
 #include "Common.h"
+#include <comdef.h>  
 
 /* InitParameter
  * Like with the editdata, this data will
@@ -46,8 +47,7 @@ BOOL CALLBACK SetupProcParam(HWND hDlg, UINT msgType, WPARAM wParam, LPARAM lPar
 			// Save edptr
 			SetWindowLong(hDlg, DWL_USER, lParam);
 			pExt=(paramExt*)lParam;
-
-			SetDlgItemText(hDlg, IDD_EDIT, pExt->pextData);
+			SetDlgItemText(hDlg, IDD_EDIT, Edif::ConvertString(pExt->pextData));
 			return TRUE;
 
 		case WM_COMMAND: // Command
@@ -58,7 +58,7 @@ BOOL CALLBACK SetupProcParam(HWND hDlg, UINT msgType, WPARAM wParam, LPARAM lPar
 			switch (wmCommandID)
 			{
 			case IDOK:	// Exit
-				GetDlgItemText(hDlg, IDD_EDIT, pExt->pextData, 500);
+				GetDlgItemText(hDlg, IDD_EDIT, Edif::ConvertString(pExt->pextData), 500);
 				pExt->pextSize=sizeof(paramExt)+strlen(pExt->pextData)+1;
 				EndDialog(hDlg, TRUE);
 				return TRUE;
@@ -100,8 +100,6 @@ void MMF2Func EditParameter(mv _far *mV, short code, paramExt* pExt)
 void MMF2Func GetParameterString(mv _far *mV, short code, paramExt* pExt, LPSTR pDest, short size)
 {
 #ifndef RUN_ONLY
-	// Example
-	// -------
-	 wsprintf(pDest, "Super parameter %s", pExt->pextData);
+
 #endif
 }

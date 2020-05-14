@@ -656,6 +656,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Vox.h" />
     <ClInclude Include="VoxAnimation.h" />
+    <ClInclude Include="VoxLight.h" />
     <ClInclude Include="VoxModel.h" />
   </ItemGroup>
   <ItemGroup>
@@ -679,6 +680,7 @@
     <ClCompile Include="TextProps.cpp" />
     <ClCompile Include="Vox.cpp" />
     <ClCompile Include="VoxAnimation.cpp" />
+    <ClCompile Include="VoxLight.cpp" />
     <ClCompile Include="VoxModel.cpp" />
   </ItemGroup>
   <ItemGroup>
