@@ -3,9 +3,9 @@
 # VoxObject
 Clickteam Fusion 2.5 Extension used to load and animate Magika Voxel .vox files
 
-![screenshot1](http://youtu.be/XcEmwrt0w4A)
+[http://youtu.be/XcEmwrt0w4A]
 
-![screenshot2](http://youtu.be/fDV_od45qWg)
+[http://youtu.be/fDV_od45qWg]
 
 
 **To assign new animations, click on "Edit" on object properties:**
